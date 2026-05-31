@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp16">
+
+    <TextView
+        android:id="@+id/hint_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:text="@string/hint_load_mode"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <RadioGroup
+        android:id="@+id/radio_play_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp16"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/hint_mode"
+        app:layout_constraintTop_toTopOf="@+id/hint_mode">
+
+        <RadioButton
+            android:id="@+id/radio_global"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/action_model_global" />
+
+        <RadioButton
+            android:id="@+id/radio_short"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_model_short" />
+
+        <RadioButton
+            android:id="@+id/radio_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_model_long" />
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_cover_mode">
+
+        <TextView
+            android:id="@+id/action_select_dir"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:background="@drawable/bg_radius_24_secondary"
+            android:gravity="center"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
+            android:text="@string/action_select_dir"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/action_select_cover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_radius_24_secondary"
+            android:gravity="center"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
+            android:text="@string/action_select_cover"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="选择封面"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_media_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="3:4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RadioGroup
+        android:id="@+id/radio_cover_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp16"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/hint_cover"
+        app:layout_constraintTop_toTopOf="@+id/hint_cover">
+
+        <RadioButton
+            android:id="@+id/radio_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/action_cover_default" />
+
+        <RadioButton
+            android:id="@+id/radio_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_cover_local" />
+
+        <RadioButton
+            android:id="@+id/radio_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_cover_auto" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/hint_cover"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:text="@string/hint_cover_source"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hint_mode" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center"
+        android:text="@string/hint_media_add"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_select_dir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:minHeight="@dimen/dp48"
+        android:layout_marginEnd="@dimen/dp8"
+        android:textSize="18sp"
+        android:text="@string/hint_media_add_default"
+        app:layout_constraintEnd_toStartOf="@+id/action_select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_view"
+        tools:text="/Android/Movies/进击的巨人: 最终季 上篇" />
+
+    <TextView
+        android:id="@+id/action_select"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_select_confirmed"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/text_select_dir"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/action_reselect"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_reselect"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/text_select_dir"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/action_confirmed"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginStart="@dimen/dp8"
+        android:layout_marginTop="@dimen/dp16"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_confirmed"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/action_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/text_name" />
+
+    <TextView
+        android:id="@+id/action_cancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginEnd="@dimen/dp8"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_cancel"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/action_confirmed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_confirmed" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/text_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:hint="@string/hint_media_name"
+        android:maxLines="1"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_select_dir" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

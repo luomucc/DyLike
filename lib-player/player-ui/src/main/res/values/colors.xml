@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="dkplayer_theme_color">@color/view_accent</color>
+    <color name="dkplayer_theme_color_translucent">@color/view_accent</color>
+    <color name="dkplayer_background_color">#4D000000</color>
+
+    <color name="grey_300">#D8D8D8</color>
+    <color name="grey_500">#7f7f7f</color>
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".ui.short_video.ShortVideoActivity">
+
+    <ImageView
+        android:id="@+id/iv_full"
+        android:layout_width="@dimen/dp48"
+        android:layout_height="@dimen/dp48"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/dp40"
+        android:layout_marginBottom="@dimen/dp40"
+        android:padding="@dimen/dp8"
+        android:src="@drawable/ic_fullscreen_24"
+        android:translationZ="@dimen/dp4"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpage2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:overScrollMode="never" />
+
+</FrameLayout>

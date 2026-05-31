@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:translationZ="@dimen/dp2"
+        android:padding="@dimen/dp16">
+
+        <ImageView
+            android:id="@+id/iv_reset"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:src="@drawable/ic_replay_24"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,contentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_zoom"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:src="@drawable/ic_zoom_out_map_24"
+            app:layout_constraintBottom_toTopOf="@+id/iv_scroll"
+            app:tint="@color/grey300_accent50_selector"
+            tools:ignore="MissingConstraints,contentDescription" />
+
+        <ImageView
+            android:id="@+id/iv_scroll"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:src="@drawable/ic_settings_vertical_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/grey300_accent50_selector"
+            tools:ignore="MissingConstraints,contentDescription" />
+
+        <me.lingci.lib.base.view.VerticalSeekBar
+            android:id="@+id/seekbar_height"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:max="250"
+            android:progress="125"
+            android:thumbTint="@color/view_accent_light"
+            android:progressTint="@color/view_accent_light"
+            android:progressBackgroundTint="@color/grey_300"
+            app:layout_constraintBottom_toTopOf="@+id/iv_zoom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_reset"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp16"
+        android:translationZ="@dimen/dp1"
+        android:layout_gravity="bottom">
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/seekbar_width"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/dp40"
+            android:max="250"
+            android:progress="125"
+            android:thumbTint="@color/view_accent_light"
+            android:progressTint="@color/view_accent_light"
+            android:progressBackgroundTint="@color/grey_300"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:padding="@dimen/dp16">
+
+        <TextView
+            android:id="@+id/effect_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="背景效果"
+            android:textSize="@dimen/dp16"
+            android:textColor="@color/white"
+            android:paddingVertical="@dimen/dp8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <RadioGroup
+            android:id="@+id/effect_group"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/effect_none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/effect_style">
+
+            <RadioButton
+                android:id="@+id/effect_none"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp56"
+                android:minHeight="@dimen/dp40"
+                android:textSize="@dimen/dp16"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/grey300_accent50_selector"
+                android:text="无"
+                app:layout_constraintTop_toBottomOf="@+id/effect_style"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <RadioButton
+                android:id="@+id/effect_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp56"
+                android:minHeight="@dimen/dp40"
+                android:textSize="@dimen/dp16"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/grey300_accent50_selector"
+                android:text="星空"
+                app:layout_constraintTop_toBottomOf="@+id/effect_none"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <RadioButton
+                android:id="@+id/effect_snow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp56"
+                android:minHeight="@dimen/dp40"
+                android:textSize="@dimen/dp16"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/grey300_accent50_selector"
+                android:text="飘雪"
+                app:layout_constraintTop_toBottomOf="@+id/effect_star"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <RadioButton
+                android:id="@+id/effect_meteor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp56"
+                android:minHeight="@dimen/dp40"
+                android:textSize="@dimen/dp16"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/grey300_accent50_selector"
+                android:text="流星"
+                app:layout_constraintTop_toBottomOf="@+id/effect_snow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

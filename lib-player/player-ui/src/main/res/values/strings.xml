@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">视频播放器</string>
+
+    <string name="dkplayer_replay">重新播放</string>
+    <string name="dkplayer_lock_tip">请先解锁屏幕！</string>
+    <string name="dkplayer_unlocked">已解锁</string>
+    <string name="dkplayer_locked">已锁定</string>
+    <string name="dkplayer_error_message">出了点小问题，请稍后重试</string>
+    <string name="dkplayer_retry"> 重    试 </string>
+    <string name="dkplayer_continue_play">继续播放</string>
+    <string name="dkplayer_wifi_tip">您正在使用移动网络，继续播放将消耗流量</string>
+
+
+    <string name="hint_not_inc_interface">非JSON资源接口</string>
+    <string name="hint_interface_name">接口名称</string>
+    <string name="hint_interface_url">接口URL(含http*)</string>
+    <string name="hint_empty_text">没有数据</string>
+    <string name="hint_video_empty_text">没有数据，建议直接搜索</string>
+    <string name="hint_search">输入视频名</string>
+    <string name="hint_web_url">输入视频网站地址</string>
+    <string name="hint_dm">弹幕</string>
+    <string name="hint_video_last">最后更新 %s</string>
+    <string name="hint_video_source">片源</string>
+    <string name="hint_video_selection">选集</string>
+    <string name="hint_video_sort">排序 %s</string>
+    <string name="hint_video_url">视频链接</string>
+    <string name="hint_sniffer_title">发现视频资源，点击播放即可</string>
+    <string name="hint_video_remark">集数</string>
+    <string name="hint_episode_remark">提示：如果不输入集数，则以点击数作为集数标识</string>
+    <string name="hint_dm_flow">悬浮弹幕读取当前播放视频，同步播放弹幕</string>
+    <string name="hint_sel_file_name">选择文件</string>
+    <string name="hint_file_back">返回上级</string>
+    <string name="hint_file_root">根目录</string>
+    <string name="hint_data_where">推荐去哪里了？</string>
+    <string name="hint_jobs">当前任务数：</string>
+    <string name="hint_add_job">点击添加新任务</string>
+    <string name="hint_un_select_dm">当前未匹配或选择弹幕</string>
+    <string name="hint_se_ss_data">请设置BILIBILI的SESSDATA</string>
+    <string name="hint_av_bv_ss_ep">输入链接或AV/BV/SS/EP</string>
+    <string name="hint_from_browser">从浏览器选取</string>
+    <string name="hint_show_line">弹幕行数</string>
+    <string name="hint_dm_type">弹幕类型</string>
+    <string name="hint_dm_shield">显示弹幕</string>
+    <string name="hint_dm_speed">滚动速度</string>
+    <string name="hint_dm_fps">显示弹幕FPS</string>
+    <string name="hint_font_custom">自定义</string>
+    <string name="hint_text_style">字体样式</string>
+    <string name="hint_style_normal">默认</string>
+    <string name="hint_style_bold">加粗</string>
+    <string name="hint_stroke_width">描边宽度</string>
+    <string name="hint_margin_width">弹幕边距</string>
+    <string name="hint_top_margin">上边距</string>
+    <string name="hint_bottom_margin">下边距</string>
+    <string name="hint_dm_offset">弹幕偏移</string>
+    <string name="hint_track_mode">轨道模式</string>
+    <string name="hind_track_single_switch">单轨切换</string>
+    <string name="hind_track_multi_merge">多轨合并</string>
+    <string name="hint_load_mode">加载模式</string>
+    <string name="hint_load_default">默认</string>
+    <string name="hint_load_timeline_offset">时间轴偏移</string>
+    <string name="hint_danmu_lib">本地弹幕库</string>
+
+
+    <string name="action_play">播放</string>
+    <string name="action_search_dm">查找弹幕</string>
+    <string name="action_select_dm">选弹幕</string>
+    <string name="action_select_ep">选集</string>
+    <string name="action_dm_select">弹幕选择</string>
+    <string name="action_dm_list">弹幕列表</string>
+    <string name="action_speed">倍数</string>
+    <string name="action_dm_local">本地选择</string>
+    <string name="action_dm_intent">网络搜索</string>
+    <string name="action_dm_option">弹幕配置</string>
+    <string name="action_dm_style">基础样式</string>
+    <string name="action_dm_show_area">显示调整</string>
+    <string name="action_dm_offset">时间偏移</string>
+    <string name="action_dm_track">弹幕轨道</string>
+    <string name="action_dm_merge_load">合并装载</string>
+    <string name="action_dm_merge_output">合并导出</string>
+    <string name="action_clear_expire">清理失效</string>
+    <string name="action_re_input">重新输入</string>
+    <string name="action_link_analysis">解析链接</string>
+    <string name="action_password">输入密码</string>
+    <string name="action_confirmed">确认</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_dm_binding">弹幕绑定</string>
+
+    <string name="action_track">轨道</string>
+    <string name="action_tab_audio">音频</string>
+    <string name="action_tab_subtitle">字幕</string>
+    <string name="action_tab_settings">设置</string>
+    <string name="action_add_subtitle_track">添加字幕轨道</string>
+    <string name="action_default_folder">默认目录</string>
+    <string name="action_last_folder">上次目录</string>
+
+    <string name="hint_audio_language">默认音频语言</string>
+    <string name="hint_subtitle_language">默认字幕语言</string>
+    <string name="hint_subtitle_font">字幕字体</string>
+    <string name="hint_subtitle_font_size">字幕大小</string>
+
+    <string name="action_media_info">媒体信息</string>
+    <string name="section_file_info">文件信息</string>
+    <string name="section_video">视频</string>
+    <string name="section_audio">音频</string>
+    <string name="section_subtitle">字幕</string>
+    <string name="hint_no_track_info">暂无轨道信息</string>
+
+</resources>

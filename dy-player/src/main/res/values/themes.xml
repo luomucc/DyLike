@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="statusBarBackground">@color/background_default</item>
+        <item name="statusBarForeground">@color/text_primary</item>
+        <item name="android:statusBarColor">@color/background_default</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/background_default</item>
+        <item name="android:navigationBarColor">@color/background_default</item>
+        <item name="colorAccent">@color/text_accent</item>
+    </style>
+
+    <style name="Theme.App" parent="Base.Theme.App" />
+
+    <style name="Theme.App.Translucent" parent="Theme.App">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+
+    <style name="Theme.App.ShortVideo" parent="Theme.App">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="CircularEnterAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/circular_enter_animation</item>
+    </style>
+
+    <style name="CircularExitAnimation">
+        <item name="android:activityOpenExitAnimation">@anim/circular_exit_animation</item>
+    </style>
+
+</resources>

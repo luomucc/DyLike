@@ -1,0 +1,12 @@
+# 敏感配置模板
+# 复制此文件为 local.properties 并填入实际值
+# local.properties 已被 .gitignore 排除，不会被提交到版本控制
+
+# Bugly 崩溃上报 APP ID（dy-player 模块使用）
+# 申请地址：https://bugly.qq.com/
+BUGLY_APP_ID=
+
+# AES 加密密钥（lib-base 模块使用，加密备份数据等场景）
+# KEY 和 IV 需要与后端保持一致
+AES_KEY=
+AES_IV=

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <application
+        android:name=".PlayerApp"
+        android:allowBackup="true"
+        android:icon="${APP_ICON}"
+        android:label="${APP_NAME}"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        android:largeHeap = "true"
+        android:roundIcon="${APP_ICON_ROUND}"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App"
+        tools:replace="android:theme,android:icon,android:label,android:roundIcon" >
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.App">
+        </activity>
+
+        <activity-alias
+            android:name=".DefaultAlias"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="${APP_ICON}"
+            android:label="${APP_NAME}"
+            android:roundIcon="${APP_ICON_ROUND}"
+            android:targetActivity=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity-alias
+            android:name=".LineAlias"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_line"
+            android:roundIcon="@mipmap/ic_launcher_round_line"
+            android:label="${APP_NAME}"
+            android:targetActivity=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name=".ui.file_browser.FileBrowserActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"/>
+
+        <activity
+            android:name=".ui.short_video.ShortVideoActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:label="@string/title_short_video"
+            android:autoRemoveFromRecents="true"
+            android:exported="true"
+            android:theme="@style/Theme.App.ShortVideo">
+            <intent-filter> <!-- Local files with MIME type (e.g. Google Drive) -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.long_video.LongVideoActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:screenOrientation="landscape"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:label="@string/title_long_video"
+            android:autoRemoveFromRecents="false"
+            android:exported="true"
+            android:theme="@style/Theme.App.Translucent">
+
+            <intent-filter> <!-- Media protocols -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="rtmp" />
+                <data android:scheme="rtmps" />
+                <data android:scheme="rtp" />
+                <data android:scheme="rtsp" />
+                <data android:scheme="mms" />
+                <data android:scheme="mmst" />
+                <data android:scheme="mmsh" />
+                <data android:scheme="tcp" />
+                <data android:scheme="udp" />
+            </intent-filter>
+
+            <intent-filter> <!-- Local files with MIME type (e.g. Google Drive) -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.media_full.MediaFullActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" />
+
+        <activity
+            android:name=".ui.media_scan.MediaScanActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" />
+
+        <activity
+            android:name=".ui.media_detail.MediaDetailActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" />
+
+        <activity
+            android:name=".ui.tool.ToolActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" />
+
+        <activity
+            android:name=".ui.about.AboutActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:label="@string/title_about"
+            android:exported="false" />
+        <activity
+            android:name=".ui.icon.IconSettingActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:exported="false" />
+        <activity
+            android:name=".ui.danmaku_binding.DanmakuBindingActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.playlist.PlaylistActivity"
+            android:configChanges = "orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+            android:exported="false" />
+
+        <activity
+            android:name="me.lingci.lib.base.ui.file_select.FileSelectorActivity"
+            android:label="@string/hint_sel_file_name"
+            android:configChanges="orientation|keyboardHidden|navigation|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
+
+</manifest>

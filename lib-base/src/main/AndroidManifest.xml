@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 方便预览主题，app模块需要添加tools:replace="android:theme" -->
+    <application android:theme="@style/Base.Theme" />
+
+</manifest>

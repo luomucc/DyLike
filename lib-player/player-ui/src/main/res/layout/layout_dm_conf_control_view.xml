@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp8"
+        android:background="@drawable/bg_control_glass"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingStart="@dimen/dp16"
+        android:paddingTop="@dimen/dp8"
+        android:paddingEnd="@dimen/dp8">
+
+        <ImageView
+            android:id="@+id/action_close"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            tools:ignore="UseAppTint,contentDescription" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/action_dm_option"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/player_controller_title_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    app:layout_constraintTop_toBottomOf="@+id/title">
+
+
+                    <TextView
+                        android:id="@+id/text_font_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_font_change"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/tv_font_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp8"
+                        android:paddingEnd="@dimen/dp8"
+                        android:text="@string/hint_style_normal"
+                        android:textColor="@color/grey300_accent50_selector"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toEndOf="@+id/text_font_hint"
+                        app:layout_constraintTop_toTopOf="@+id/text_font_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_font_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/tv_font_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp8"
+                        android:paddingEnd="@dimen/dp8"
+                        android:text="@string/hint_font_custom"
+                        android:textColor="@color/grey300_accent50_selector"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/tv_font_normal"
+                        app:layout_constraintTop_toTopOf="@+id/tv_font_normal"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_font_normal"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none"
+                        android:overScrollMode="never"
+                        android:maxHeight="@dimen/dp48"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toEndOf="@+id/tv_font_normal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_font_hint"/>
+
+                    <TextView
+                        android:id="@+id/text_style_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_text_style"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recycler_view"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/tv_style_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp8"
+                        android:paddingEnd="@dimen/dp8"
+                        android:text="@string/hint_style_normal"
+                        android:textColor="@color/grey300_accent50_selector"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        android:textStyle="normal"
+                        app:layout_constraintStart_toEndOf="@+id/text_style_hint"
+                        app:layout_constraintTop_toTopOf="@+id/text_style_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_style_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/tv_style_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/dp8"
+                        android:paddingEnd="@dimen/dp8"
+                        android:text="@string/hint_style_bold"
+                        android:textColor="@color/grey300_accent50_selector"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/tv_style_normal"
+                        app:layout_constraintTop_toTopOf="@+id/tv_style_normal"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_style_normal"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/font_size_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_font_size"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_style_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/font_size_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/font_size_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/font_size_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="24" />
+
+                    <TextView
+                        android:id="@+id/opacity_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_opacity"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/font_size_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/opacity_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/opacity_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/opacity_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="75" />
+
+                    <TextView
+                        android:id="@+id/stroke_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_stroke_width"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/opacity_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/stroke_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/stroke_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/stroke_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="75" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/opacity"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="100"
+                        android:progress="75"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/opacity_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/opacity_value"
+                        app:layout_constraintStart_toEndOf="@+id/opacity_hint"
+                        app:layout_constraintTop_toTopOf="@+id/opacity_hint" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/stroke"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="100"
+                        android:progress="20"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/stroke_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/stroke_value"
+                        app:layout_constraintStart_toEndOf="@+id/stroke_hint"
+                        app:layout_constraintTop_toTopOf="@+id/stroke_hint" />
+
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/font_size"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="100"
+                        android:progress="40"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/font_size_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/font_size_value"
+                        app:layout_constraintStart_toEndOf="@+id/font_size_hint"
+                        app:layout_constraintTop_toTopOf="@+id/font_size_hint" />
+
+
+                    <TextView
+                        android:id="@+id/speed_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_dm_speed"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/stroke_hint"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/speed"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="100"
+                        android:min="1"
+                        android:progress="35"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/speed_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/speed_value"
+                        app:layout_constraintStart_toEndOf="@+id/speed_hint"
+                        app:layout_constraintTop_toTopOf="@+id/speed_hint" />
+
+                    <TextView
+                        android:id="@+id/speed_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/speed_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/speed_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="35" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/show_fps"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:checked="false"
+                        android:text="@string/hint_dm_fps"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/dp16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/speed_hint"
+                        tools:ignore="SpUsage" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_show_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    app:layout_constraintTop_toBottomOf="@+id/title">
+
+                    <ImageView
+                        android:id="@+id/iv_show_roll"
+                        android:layout_width="48dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        app:layout_constraintStart_toEndOf="@+id/show_area_hint"
+                        app:layout_constraintTop_toTopOf="@+id/show_area_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/show_area_hint"
+                        app:srcCompat="@drawable/ic_bili_roll"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:id="@+id/iv_show_top"
+                        android:layout_width="48dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        app:layout_constraintStart_toEndOf="@+id/iv_show_roll"
+                        app:layout_constraintTop_toTopOf="@+id/iv_show_roll"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_show_roll"
+                        app:srcCompat="@drawable/ic_bili_top"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageView
+                        android:id="@+id/iv_show_bottom"
+                        android:layout_width="48dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dp8"
+                        android:checked="true"
+                        app:layout_constraintStart_toEndOf="@+id/iv_show_top"
+                        app:layout_constraintTop_toTopOf="@+id/iv_show_roll"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_show_roll"
+                        app:srcCompat="@drawable/ic_bili_bottom"
+                        app:tint="@color/grey300_accent50_selector"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/margin_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_margin_width"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/margin_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/margin_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/margin_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="5" />
+
+                    <TextView
+                        android:id="@+id/show_line_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_show_line"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/show_area_shield"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/show_line_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/show_line_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/show_line_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="1" />
+
+                    <TextView
+                        android:id="@+id/show_area_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_dm_type"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/margin_hint"
+                        tools:ignore="SpUsage" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/margin"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="100"
+                        android:progress="4"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/margin_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/margin_value"
+                        app:layout_constraintStart_toEndOf="@+id/margin_hint"
+                        app:layout_constraintTop_toTopOf="@+id/margin_hint" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/show_line"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        android:max="20"
+                        android:progress="1"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/show_line_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/show_line_value"
+                        app:layout_constraintStart_toEndOf="@+id/show_line_hint"
+                        app:layout_constraintTop_toTopOf="@+id/show_line_hint" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/show_area_shield"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:checked="true"
+                        android:text="@string/hint_dm_shield"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/dp16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/show_area_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/top_margin_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_top_margin"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/show_line_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/top_margin_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/top_margin_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/top_margin_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="1" />
+
+                    <SeekBar
+                        android:id="@+id/top_margin"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="@+id/top_margin_hint"
+                        app:layout_constraintStart_toEndOf="@+id/top_margin_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/top_margin_value"
+                        app:layout_constraintBottom_toBottomOf="@+id/top_margin_hint"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/bottom_margin_hint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/player_control_item_height"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/hint_bottom_margin"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/top_margin_hint"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                        android:id="@+id/bottom_margin_value"
+                        android:layout_width="@dimen/dp32"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/dp8"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/grey_300"
+                        android:textSize="@dimen/player_control_item_font_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/bottom_margin_hint"
+                        app:layout_constraintBottom_toBottomOf="@+id/bottom_margin_hint"
+                        tools:ignore="SpUsage"
+                        tools:text="1" />
+
+                    <SeekBar
+                        android:id="@+id/bottom_margin"
+                        android:layout_width="200dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="@+id/bottom_margin_hint"
+                        app:layout_constraintStart_toEndOf="@+id/bottom_margin_hint"
+                        app:layout_constraintEnd_toStartOf="@+id/bottom_margin_value"
+                        app:layout_constraintBottom_toBottomOf="@+id/bottom_margin_hint"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="@color/white"
+                        android:thumbTint="@color/white"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_offset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    app:layout_constraintTop_toBottomOf="@+id/title">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp4"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/offset_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/player_control_item_height"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/hint_dm_offset"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_sub_10"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="-10"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toStartOf="@+id/offset_sub_2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/offset_hint"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_sub_2"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="-2"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toStartOf="@+id/offset_sub_0_5"
+                            app:layout_constraintStart_toEndOf="@+id/offset_sub_10"
+                            app:layout_constraintTop_toTopOf="@+id/offset_sub_10"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_sub_0_5"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="-0.5"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toStartOf="@+id/offset_add_0_5"
+                            app:layout_constraintStart_toEndOf="@+id/offset_sub_2"
+                            app:layout_constraintTop_toTopOf="@+id/offset_sub_10"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_add_0_5"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="+0.5"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toStartOf="@+id/offset_add_2"
+                            app:layout_constraintStart_toEndOf="@+id/offset_sub_0_5"
+                            app:layout_constraintTop_toTopOf="@+id/offset_sub_10"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_add_2"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="+2"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toStartOf="@+id/offset_add_10"
+                            app:layout_constraintStart_toEndOf="@+id/offset_add_0_5"
+                            app:layout_constraintTop_toTopOf="@+id/offset_sub_10"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_add_10"
+                            android:layout_width="@dimen/dp40"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/bd_oval_stroke_selector"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="+10"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/offset_add_2"
+                            app:layout_constraintTop_toTopOf="@+id/offset_sub_10"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            android:id="@+id/offset_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="@dimen/dp16"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:textColor="@color/grey_300"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            app:layout_constraintStart_toEndOf="@+id/offset_hint"
+                            app:layout_constraintTop_toTopOf="@+id/offset_hint"
+                            app:layout_constraintBottom_toBottomOf="@+id/offset_hint"
+                            tools:ignore="SpUsage"
+                            tools:text="75" />
+
+                        <TextView
+                            android:id="@+id/offset_reset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="@dimen/dp8"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:paddingStart="@dimen/dp8"
+                            android:paddingEnd="@dimen/dp8"
+                            android:text="@string/action_reset"
+                            android:textColor="@color/view_accent"
+                            android:textSize="@dimen/player_control_item_font_size"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/offset_hint"
+                            app:layout_constraintBottom_toBottomOf="@+id/offset_hint"
+                            tools:ignore="SpUsage"
+                            tools:visibility="visible" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/player_control_item_height"
+            android:background="@color/transparent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:tabBackground="@color/transparent"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/view_accent_light"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="2dp"
+            app:tabMaxWidth="@dimen/dp200"
+            app:tabMinWidth="@dimen/dp56"
+            app:tabMode="auto"
+            app:tabPaddingEnd="@dimen/dp8"
+            app:tabPaddingStart="@dimen/dp8"
+            app:tabSelectedTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:tabSelectedTextColor="@color/view_accent_light"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:tabTextColor="@color/grey_300">
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>=
+    <!-- 文本颜色 212121 757575 -->
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#212121</color>
+    <color name="text_third">#A6A6A6</color>
+    <color name="text_selected">#EF5350</color>
+    <color name="text_accent">#9e65f3</color>
+    <color name="text_disabled">#BDBDBD</color>
+    <color name="text_highlight">#FFEB3B</color>
+    <color name="text_blue">@color/blue_500</color>
+
+    <!-- view颜色 -->
+    <color name="view_accent">@color/red_600</color>
+    <color name="view_accent_light">@color/red_50</color>
+
+    <!-- 背景颜色 -->
+    <color name="background_default">#F5F5F5</color>
+    <color name="background_selected">#E0E0E0</color>
+    <color name="background_secondary">#EEEEEE</color>
+    <color name="background_secondary_selected">#BDBDBD</color>
+    <color name="background_disabled">#F1F1F1</color>
+
+    <!-- CardView 颜色 -->
+    <color name="card_view_background">#FFFFFF</color>
+    <color name="card_view_stroke">#E0E0E0</color>
+
+    <color name="recyclerview_item_default">@color/blue_10</color>
+    <color name="recyclerview_item_selected">@color/blue_50</color>
+
+    <!-- 按钮颜色 -->
+    <color name="button_background_normal">#673AB7</color>
+    <color name="button_background_pressed">#5E35B1</color>
+    <color name="button_background_disabled">#BDBDBD</color>
+    <color name="button_text_normal">#FFFFFF</color>
+    <color name="button_text_disabled">#757575</color>
+
+    <!-- 输入框颜色 -->
+    <color name="edittext_background">#FFFFFF</color>
+    <color name="edittext_stroke_normal">#BDBDBD</color>
+    <color name="edittext_stroke_focused">#673AB7</color>
+
+    <!-- 分割线颜色 -->
+    <color name="divider">#E0E0E0</color>
+
+</resources>

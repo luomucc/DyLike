@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp8"
+        android:background="@drawable/bg_control_glass"
+        android:paddingStart="@dimen/dp16"
+        android:paddingTop="@dimen/dp8"
+        android:paddingEnd="@dimen/dp8">
+
+        <ImageView
+            android:id="@+id/action_close"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            tools:ignore="UseAppTint,contentDescription" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/action_dm_list"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/player_controller_title_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sw_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跟随播放"
+            android:textColor="@color/grey_300"
+            android:layout_marginStart="@dimen/dp8"
+            app:layout_constraintTop_toTopOf="@+id/title"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintStart_toEndOf="@+id/title"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            tools:text="1:00:00"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/player_control_item_font_size"
+            app:layout_constraintStart_toEndOf="@+id/sw_follow"
+            app:layout_constraintEnd_toStartOf="@+id/action_close"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintBottom_toTopOf="@+id/tv_info"/>
+
+        <me.lingci.lib.base.view.FastScroller
+            android:id="@+id/fast_scroller"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="@+id/recycler_view"
+            app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp4"
+            android:gravity="center"
+            android:lines="1"
+            tools:text="00:00-24:00 共4000条"
+            android:textColor="@color/grey_300"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

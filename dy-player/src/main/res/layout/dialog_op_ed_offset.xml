@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_secondary"
+    android:padding="@dimen/dp16">
+
+    <Space
+        android:layout_width="560dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/hint_media_op_ed_set"
+        app:titleCentered="true"/>
+
+    <Button
+        android:id="@+id/button_confirmed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp16"
+        android:minWidth="@dimen/dp40"
+        android:text="@string/action_confirmed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_seek_bar" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp16"
+        android:minWidth="@dimen/dp40"
+        android:text="@string/action_cancel"
+        app:layout_constraintEnd_toStartOf="@+id/button_confirmed"
+        app:layout_constraintTop_toTopOf="@+id/button_confirmed" />
+
+    <TextView
+        android:id="@+id/tv_op_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:text="当前调整值为"/>
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/op_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginTop="@dimen/dp8"
+        android:max="600"
+        android:progress="50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_op_hint" />
+
+
+    <TextView
+        android:id="@+id/tv_ed_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/op_seek_bar"
+        tools:text="当前调整值为"/>
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/ed_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp32"
+        android:layout_marginTop="@dimen/dp8"
+        android:max="600"
+        android:progress="50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ed_hint" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

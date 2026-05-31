@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    tools:context=".ui.media.MediaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/layout_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_media_history"
+                android:layout_width="@dimen/dp128"
+                android:layout_height="@dimen/dp72"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginBottom="@dimen/dp8"
+                app:cardCornerRadius="@dimen/dp8"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toStartOf="@+id/card_media_like"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_media_history"
+                    android:layout_width="@dimen/dp128"
+                    android:layout_height="@dimen/dp72"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_media_history"
+                    tools:ignore="ContentDescription,MissingConstraints" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_media_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp8"
+                android:layout_marginBottom="@dimen/dp8"
+                app:cardCornerRadius="@dimen/dp8"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toStartOf="@+id/card_media_playlist"
+                app:layout_constraintStart_toEndOf="@+id/card_media_history"
+                app:layout_constraintTop_toTopOf="@+id/card_media_history">
+
+                <ImageView
+                    android:id="@+id/iv_media_like"
+                    android:layout_width="@dimen/dp128"
+                    android:layout_height="@dimen/dp72"
+                    android:src="@drawable/ic_media_like"
+                    tools:ignore="ContentDescription,MissingConstraints" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_media_playlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp8"
+                android:layout_marginBottom="@dimen/dp8"
+                app:cardCornerRadius="@dimen/dp8"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_media_like"
+                app:layout_constraintTop_toTopOf="@+id/card_media_history">
+
+                <ImageView
+                    android:id="@+id/iv_media_playlist"
+                    android:layout_width="@dimen/dp72"
+                    android:layout_height="@dimen/dp72"
+                    android:src="@drawable/ic_media_playlist"
+                    tools:ignore="ContentDescription,MissingConstraints" />
+
+            </androidx.cardview.widget.CardView>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_batch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/button_remove"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp40"
+                android:minHeight="@dimen/dp40"
+                android:text="@string/action_delete"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/button_exit"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp40"
+                android:minHeight="@dimen/dp40"
+                android:text="@string/action_exit"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_remove"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/button_select_invert"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp40"
+                android:minHeight="@dimen/dp40"
+                android:text="@string/action_select_invert"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_select_all"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/button_select_all"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/dp40"
+                android:minHeight="@dimen/dp40"
+                android:text="@string/action_select_all"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/dp8"
+            android:paddingEnd="@dimen/dp8"
+            app:layout_constraintBottom_toTopOf="@+id/layout_batch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_action" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

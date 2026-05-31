@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_top_radius_16_shape"
+    android:paddingStart="@dimen/dp16"
+    android:paddingTop="@dimen/dp8"
+    android:paddingEnd="@dimen/dp16"
+    android:paddingBottom="@dimen/dp16">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/hint_action_title"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/dp16"
+        android:letterSpacing="0.1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage" />
+
+    <TextView
+        android:id="@+id/action_close"
+        android:layout_width="@dimen/dp56"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/action_close_icon"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/dp24"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp4"
+        android:nestedScrollingEnabled="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/action_negative"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@drawable/bg_action_radius_selector"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:letterSpacing="0.3"
+        android:text="@string/action_negative"
+        android:textColor="@color/text_selected"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

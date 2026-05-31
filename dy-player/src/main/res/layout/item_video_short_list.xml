@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dp4"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_media_default"
+            app:layout_constraintDimensionRatio="3:4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:id="@+id/view_border"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_purple_border"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toTopOf="@id/iv_thumb"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thumb"
+            app:layout_constraintStart_toStartOf="@id/iv_thumb"
+            app:layout_constraintEnd_toEndOf="@id/iv_thumb"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="1dp"
+            android:maxLines="2"
+            android:paddingStart="4dp"
+            android:paddingTop="@dimen/dp4"
+            android:paddingEnd="4dp"
+            android:paddingBottom="@dimen/dp4"
+            android:textSize="12sp"
+            android:background="#4D2E2E2E"
+            android:textColor="@color/white"
+            android:translationZ="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thumb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本这是一串很长的文本" />
+
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
+            app:layout_constraintEnd_toEndOf="@+id/iv_thumb"
+            app:layout_constraintTop_toTopOf="@+id/iv_thumb"
+            android:layout_marginEnd="@dimen/dp8"
+            android:layout_marginTop="@dimen/dp8"
+            android:src="@drawable/ic_check"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

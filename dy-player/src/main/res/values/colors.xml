@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="view_accent">@color/purple_50</color>
+    <color name="view_accent_light">@color/purple_50</color>
+
+    <color name="purple_accent">#a987ec</color>
+
+</resources>

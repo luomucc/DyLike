@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/dp16"
+        android:paddingTop="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:paddingBottom="@dimen/dp16">
+
+        <me.lingci.lib.player.view.SubtitleView
+            android:id="@+id/subtitle_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:importantForAccessibility="no"
+            android:visibility="visible"
+            app:subtitleEdgeColor="#000000"
+            app:subtitleEdgeType="outline"
+            app:subtitleTextColor="#FFFFFF"
+            app:subtitleTextSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.lingci.lib.base.view.StrokeTextView
+            android:id="@+id/tv_master"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="这是主字幕"
+            app:layout_constraintBottom_toTopOf="@+id/tv_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <me.lingci.lib.base.view.StrokeTextView
+            android:id="@+id/tv_secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="这是副字幕"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

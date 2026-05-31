@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="statusBarBackground">@color/black</item>
+        <item name="statusBarForeground">@color/white</item>
+        <item name="android:statusBarColor">@color/background_default</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@color/background_default</item>
+        <item name="android:navigationBarColor">@color/background_default</item>
+        <item name="colorAccent">@color/text_accent</item>
+    </style>
+
+    <style name="Theme.App.ShortVideo" parent="Base.Theme.App">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+</resources>

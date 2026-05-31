@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_search_24"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:id="@+id/menu_add"
+        android:icon="@drawable/ic_add_24"
+        android:orderInCategory="96"
+        android:title="@string/hint_media_add"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_scan"
+        android:icon="@drawable/ic_sync_24"
+        app:iconTint="@color/text_primary"
+        android:visible="true"
+        android:orderInCategory="97"
+        android:title="@string/hint_media_scan_local"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_add_link"
+        android:icon="@drawable/ic_add_link_24"
+        android:orderInCategory="97"
+        android:title="@string/hint_media_link_add"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_input_link"
+        android:icon="@drawable/ic_add_link_24"
+        android:orderInCategory="98"
+        android:title="@string/hint_media_link_input"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_local_link"
+        android:icon="@drawable/ic_add_link_24"
+        android:orderInCategory="99"
+        android:title="@string/hint_media_link_local"
+        app:showAsAction="never"/>
+
+</menu>

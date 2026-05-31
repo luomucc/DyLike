@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp32"
+    android:paddingStart="@dimen/dp8"
+    android:paddingEnd="@dimen/dp8"
+    android:gravity="center"
+    android:maxLines="1"
+    android:textColor="@color/grey300_accent600_selector"
+    android:textSize="@dimen/dp16"
+    tools:ignore="SpUsage"
+    tools:text="文件名" />

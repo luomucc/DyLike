@@ -1,0 +1,10 @@
+<!-- 路径2的颜色动画：purple_300 ↔ purple_50，500ms，无限循环（反向） -->
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="600"
+    android:propertyName="fillColor"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"
+    android:targetName="right"
+    android:valueFrom="@color/purple_300"
+    android:valueTo="@color/purple_50"
+    android:valueType="colorType" />

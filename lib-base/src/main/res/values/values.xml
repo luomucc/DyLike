@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- string -->
+    <string name="title_keyword_filter">筛选关键词</string>
+
+    <string name="hint_input_value">输入项</string>
+    <string name="hint_empty_text">没有数据</string>
+    <string name="hint_action_title">请选择功能项</string>
+    <string name="hint_help_info">帮助信息</string>
+    <string name="hint_zero">0</string>
+    <string name="hint_dir_line">/</string>
+    <string name="hint_sel_file_name">选择文件</string>
+    <string name="hint_loading_help">少女祈祷中…</string>
+    <string name="hint_set_name">设置名称</string>
+    <string name="hint_name">名称</string>
+    <string name="hint_image_quality">图片质量，推荐80–100，当前 %d</string>
+
+    <string name="action_confirmed">确认</string>
+    <string name="action_cancel">取消</string>
+    <string name="action_settings">设置</string>
+    <string name="action_search">搜索</string>
+    <string name="action_open">打开</string>
+    <string name="action_close">关闭</string>
+    <string name="action_close_icon">×</string>
+    <string name="action_save">保存</string>
+    <string name="action_send">发送</string>
+    <string name="action_negative">取消</string>
+    <string name="action_positive">确定</string>
+    <string name="action_delete">删除</string>
+    <string name="action_remove">移除</string>
+    <string name="action_goto">前往</string>
+    <string name="action_switch">切换</string>
+    <string name="action_bak">后退</string>
+    <string name="action_help">帮助</string>
+    <string name="action_analysis">解析</string>
+    <string name="action_select_all">全选</string>
+    <string name="action_select_invert">反选</string>
+    <string name="action_roger">知道啦</string>
+    <string name="action_input">导入</string>
+    <string name="action_output">导出</string>
+    <string name="action_more">更多></string>
+    <string name="action_reset">重置</string>
+    <string name="action_gradient_mode">渐变模式</string>
+    <string name="action_clear_select">清除选择</string>
+    <string name="action_dm_select">选择文件</string>
+
+    <!-- style -->
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!-- color -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorAccent">@color/red_600</color>
+
+    <color name="blue_10">#EAEDF4</color>
+    <color name="blue_50">#aee6ff</color>
+    <color name="blue_150">#30ACE3</color>
+    <color name="blue_500">#335390</color>
+    <color name="blue_800">#18215D</color>
+    <color name="blue_t">#0099FF</color>
+    <color name="blue_t_light">#B3D9FF</color>
+
+    <color name="red_50">#FDE1DE</color>
+    <color name="red_600">#F95862</color>
+    <color name="red_700">#f25551</color>
+    <color name="red_t">#FF5765</color>
+    <color name="red_t_light">#FFCCCC</color>
+
+    <color name="purple_50">#CEA2FB</color>
+    <color name="purple_300">#A359F6</color>
+    <color name="purple_500">#8A31EF</color>
+
+    <color name="green_500">#138c18</color>
+    <color name="green_t">#15D173</color>
+    <color name="green_t_light">#A3F0D4</color>
+
+    <color name="yellow_600">#FFDE00</color>
+    <color name="yellow_800">#FFC71F</color>
+    <color name="yellow_t">#FFB300</color>
+
+    <color name="blue_black_200">#9DA3B4</color>
+    <color name="blue_black_500">#484855</color>
+    <color name="blue_black_800">#1D1D27</color>
+
+    <color name="grey_300">#D8D8D8</color>
+    <color name="grey_400">#979797</color>
+    <color name="grey_500">#7f7f7f</color>
+    <color name="grey_800">#333333</color>
+
+    <!-- dimen -->
+    <dimen name="dp1">1dp</dimen>
+    <dimen name="dp2">2dp</dimen>
+    <dimen name="dp4">4dp</dimen>
+    <dimen name="dp6">6dp</dimen>
+    <dimen name="dp8">8dp</dimen>
+    <dimen name="dp10">10dp</dimen>
+    <dimen name="dp12">12dp</dimen>
+    <dimen name="dp14">14dp</dimen>
+    <dimen name="dp16">16dp</dimen>
+    <dimen name="dp18">18dp</dimen>
+    <dimen name="dp20">20dp</dimen>
+    <dimen name="dp24">24dp</dimen>
+    <dimen name="dp32">32dp</dimen>
+    <dimen name="dp40">40dp</dimen>
+    <dimen name="dp48">48dp</dimen>
+    <dimen name="dp56">56dp</dimen>
+    <dimen name="dp64">64dp</dimen>
+    <dimen name="dp72">72dp</dimen>
+    <dimen name="dp80">80dp</dimen>
+    <dimen name="dp88">88dp</dimen>
+    <dimen name="dp96">96dp</dimen>
+    <dimen name="dp100">100dp</dimen>
+    <dimen name="dp112">112dp</dimen>
+    <dimen name="dp120">120dp</dimen>
+    <dimen name="dp128">128dp</dimen>
+    <dimen name="dp160">160dp</dimen>
+    <dimen name="dp200">200dp</dimen>
+    <dimen name="dp240">240dp</dimen>
+
+</resources>

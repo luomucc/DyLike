@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dp16"
+    android:paddingBottom="@dimen/dp16">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp8"
+        android:gravity="center_vertical"
+        android:text="倍数设置"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drag_handle"/>
+
+    <TextView
+        android:id="@+id/tv_left_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center_vertical"
+        android:text="左边长按"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_speed"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dp16"
+        app:layout_constraintTop_toTopOf="@+id/tv_left_speed"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_left_speed"
+        app:layout_constraintStart_toEndOf="@+id/tv_left_speed"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_left_0_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="0.5x"/>
+
+        <TextView
+            android:id="@+id/tv_left_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="1x"/>
+
+        <TextView
+            android:id="@+id/tv_left_1_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="1.5x"/>
+
+        <TextView
+            android:id="@+id/tv_left_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="2x"/>
+
+        <TextView
+            android:id="@+id/tv_left_2_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="2.5x"/>
+
+        <TextView
+            android:id="@+id/tv_left_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="3x"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_right_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center_vertical"
+        android:text="右边长按"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_left_speed"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/dp16"
+        app:layout_constraintTop_toTopOf="@+id/tv_right_speed"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_right_speed"
+        app:layout_constraintStart_toEndOf="@+id/tv_right_speed"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_right_0_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="0.5x"/>
+
+        <TextView
+            android:id="@+id/tv_right_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="1x"/>
+
+        <TextView
+            android:id="@+id/tv_right_1_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="1.5x"/>
+
+        <TextView
+            android:id="@+id/tv_right_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="2x"/>
+
+        <TextView
+            android:id="@+id/tv_right_2_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="2.5x"/>
+
+        <TextView
+            android:id="@+id/tv_right_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp8"
+            android:textColor="@color/accent_selector"
+            android:text="3x"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center_vertical"
+        android:text="开关"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_right_speed"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示视频标题"
+        app:layout_constraintTop_toBottomOf="@+id/tv_switch"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示点赞按钮"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_title"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示评论按钮"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_like"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示进度条"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_comment"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示进度标识"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_seekbar"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_hide_sys_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="隐藏状态栏"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_pager"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_auto_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自动连播"
+        app:layout_constraintTop_toBottomOf="@+id/sw_hide_sys_bar"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/sw_show_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_show_more"
+        app:layout_constraintTop_toBottomOf="@+id/sw_auto_next"/>
+
+    <TextView
+        android:id="@+id/tv_timer_close"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:text="@string/hint_timer_close"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_timer_close_status"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_more"/>
+
+    <TextView
+        android:id="@+id/tv_timer_close_status"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:text="@string/timer_off"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sw_show_more"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

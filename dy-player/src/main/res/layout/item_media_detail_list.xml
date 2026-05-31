@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/custom_shadow"
+    android:layout_marginBottom="@dimen/dp8"
+    android:layout_marginHorizontal="@dimen/dp8"
+    android:paddingHorizontal="@dimen/dp8"
+    android:paddingVertical="@dimen/dp4">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="1dp"
+        android:maxLines="3"
+        android:minHeight="@dimen/dp32"
+        android:gravity="center_vertical"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_playing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="111" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="?android:attr/textColorSecondary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="这是一串很长的文本" />
+
+    <ImageView
+        android:id="@+id/iv_playing"
+        android:layout_width="@dimen/dp24"
+        android:layout_height="@dimen/dp24"
+        android:src="@drawable/ic_dance"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

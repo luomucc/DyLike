@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp8"
+        android:background="@drawable/bg_control_glass"
+        android:paddingStart="@dimen/dp16"
+        android:paddingTop="@dimen/dp8"
+        android:paddingEnd="@dimen/dp8">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp40"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/action_track"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/player_controller_title_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <ImageView
+            android:id="@+id/action_close"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            tools:ignore="UseAppTint,contentDescription" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/cl_track_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_close_track,recycler_view,tv_add_track" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:background="@color/transparent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:tabBackground="@color/transparent"
+            app:tabGravity="start"
+            app:tabIndicatorColor="@color/view_accent_light"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="auto"
+            app:tabMinWidth="@dimen/dp64"
+            app:tabPaddingEnd="@dimen/dp8"
+            app:tabPaddingStart="@dimen/dp8"
+            app:tabSelectedTextColor="@color/view_accent_light"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:tabTextColor="@color/grey_300" />
+
+        <TextView
+            android:id="@+id/tv_close_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="@dimen/dp8"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingStart="@dimen/dp16"
+            android:text="@string/action_close"
+            android:textColor="@color/grey300_accent50_selector"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            tools:ignore="SpUsage" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@id/tv_add_track"
+            app:layout_constraintTop_toBottomOf="@id/tv_close_track" />
+
+        <TextView
+            android:id="@+id/tv_add_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="@dimen/dp8"
+            android:paddingBottom="@dimen/dp8"
+            android:layout_marginBottom="@dimen/dp16"
+            android:text="@string/action_add_subtitle_track"
+            android:textColor="@color/grey300_accent50_selector"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="SpUsage" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/cl_file_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="layout_folder,file_recycler_view,file_fast_scroller" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_folder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title">
+
+            <TextView
+                android:id="@+id/default_folder"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp24"
+                android:paddingStart="@dimen/dp8"
+                android:paddingEnd="@dimen/dp8"
+                android:gravity="center"
+                android:background="@drawable/bg_radius_stroke_6_selector"
+                android:text="@string/action_default_folder"
+                android:textColor="@color/grey_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/last_folder"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp24"
+                android:paddingStart="@dimen/dp8"
+                android:paddingEnd="@dimen/dp8"
+                android:layout_marginStart="@dimen/dp8"
+                android:gravity="center"
+                android:background="@drawable/bg_radius_stroke_6_selector"
+                android:text="@string/action_last_folder"
+                android:textColor="@color/grey_300"
+                app:layout_constraintStart_toEndOf="@+id/default_folder"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/file_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp4"
+            android:layout_marginBottom="@dimen/dp8"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_folder" />
+
+        <me.lingci.lib.base.view.FastScroller
+            android:id="@+id/file_fast_scroller"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/file_recycler_view"
+            app:layout_constraintBottom_toBottomOf="@+id/file_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/cl_settings_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="layout_settings" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layout_settings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp4">
+
+                <TextView
+                    android:id="@+id/hint_audio_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/player_control_item_height"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/hint_audio_language"
+                    android:textColor="@color/grey_300"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/tv_audio_language_value"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center|end"
+                    android:maxLines="1"
+                    android:paddingEnd="@dimen/dp8"
+                    android:textColor="@color/grey300_accent50_selector"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toEndOf="@id/hint_audio_language"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/hint_audio_language"
+                    app:layout_constraintBottom_toBottomOf="@id/hint_audio_language"
+                    tools:ignore="SpUsage"
+                    tools:text="日语" />
+
+                <TextView
+                    android:id="@+id/hint_subtitle_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/player_control_item_height"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/hint_subtitle_language"
+                    android:textColor="@color/grey_300"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hint_audio_language"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle_language_value"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center|end"
+                    android:maxLines="1"
+                    android:paddingEnd="@dimen/dp8"
+                    android:textColor="@color/grey300_accent50_selector"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toEndOf="@id/hint_subtitle_language"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/hint_subtitle_language"
+                    app:layout_constraintBottom_toBottomOf="@id/hint_subtitle_language"
+                    tools:ignore="SpUsage"
+                    tools:text="中文" />
+
+                <TextView
+                    android:id="@+id/hint_subtitle_font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/player_control_item_height"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/hint_subtitle_font"
+                    android:textColor="@color/grey_300"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hint_subtitle_language"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle_font_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp8"
+                    android:paddingEnd="@dimen/dp8"
+                    android:text="@string/hint_style_normal"
+                    android:textColor="@color/grey300_accent50_selector"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toEndOf="@id/hint_subtitle_font"
+                    app:layout_constraintTop_toTopOf="@id/hint_subtitle_font"
+                    app:layout_constraintBottom_toBottomOf="@id/hint_subtitle_font"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle_font_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/dp8"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp8"
+                    android:paddingEnd="@dimen/dp8"
+                    android:text="@string/hint_font_custom"
+                    android:textColor="@color/grey300_accent50_selector"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/tv_subtitle_font_normal"
+                    app:layout_constraintTop_toTopOf="@id/tv_subtitle_font_normal"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_subtitle_font_normal"
+                    tools:ignore="SpUsage" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/font_recycler_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:maxHeight="@dimen/dp48"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@id/tv_subtitle_font_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hint_subtitle_font" />
+
+                <TextView
+                    android:id="@+id/hint_subtitle_font_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/player_control_item_height"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/hint_subtitle_font_size"
+                    android:textColor="@color/grey_300"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/font_recycler_view"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle_font_size_value"
+                    android:layout_width="@dimen/dp32"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/dp8"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/grey_300"
+                    android:textSize="@dimen/player_control_item_font_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/hint_subtitle_font_size"
+                    app:layout_constraintBottom_toBottomOf="@id/hint_subtitle_font_size"
+                    tools:ignore="SpUsage"
+                    tools:text="20" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/seek_subtitle_font_size"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:max="60"
+                    android:progress="20"
+                    android:progressTint="@color/white"
+                    android:thumbTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/hint_subtitle_font_size"
+                    app:layout_constraintEnd_toStartOf="@id/tv_subtitle_font_size_value"
+                    app:layout_constraintStart_toEndOf="@id/hint_subtitle_font_size"
+                    app:layout_constraintTop_toTopOf="@id/hint_subtitle_font_size" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

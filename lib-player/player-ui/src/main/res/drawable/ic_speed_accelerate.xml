@@ -1,0 +1,12 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_speed_base">
+
+    <target
+        android:name="left"
+        android:animation="@animator/speed_color_anim_left"/>
+
+    <target
+        android:name="right"
+        android:animation="@animator/speed_color_anim_right"/>
+
+</animated-vector>

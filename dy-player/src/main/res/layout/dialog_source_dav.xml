@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp16">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        app:title="@string/hint_source_dav_add"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleCentered="true"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_name"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:hint="@string/hint_dav_name"
+        app:helperText="@string/hint_dav_name_desc"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:maxLines="1"
+            android:minLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_site"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:hint="@string/hint_dav_site"
+        app:helperText="@string/hint_dav_site_desc"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/input_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:minLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_username"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:hint="@string/hint_dav_username"
+        app:helperText="@string/hint_dav_username_desc"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/input_site">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:maxLines="1"
+            android:minLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_password"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:hint="@string/hint_dav_password"
+        app:helperText="@string/hint_dav_password_desc"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@+id/input_username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:maxLines="1"
+            android:minLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/hint_dav_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_test" />
+
+    <TextView
+        android:id="@+id/text_status"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:textColor="@color/green_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_test"
+        tools:text="连接成功" />
+
+    <Button
+        android:id="@+id/action_test"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password"
+        android:text="@string/hint_dav_test" />
+
+    <Button
+        android:id="@+id/action_cancel"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/action_cancel"
+        app:layout_constraintEnd_toStartOf="@+id/action_confirmed"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_confirmed" />
+
+    <Button
+        android:id="@+id/action_confirmed"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_marginStart="@dimen/dp16"
+        android:padding="@dimen/dp8"
+        android:text="@string/action_confirmed"
+        app:layout_constraintTop_toBottomOf="@+id/action_test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/action_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

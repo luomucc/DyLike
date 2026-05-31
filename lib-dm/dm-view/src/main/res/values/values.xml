@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hint_font_change">字体变更</string>
+    <string name="hint_font_size">字体大小</string>
+    <string name="hint_show_area">显示区域</string>
+    <string name="hint_opacity">不透明度</string>
+
+</resources>

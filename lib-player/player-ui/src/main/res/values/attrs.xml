@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SubtitleView">
+        <attr name="subtitleTextSize" format="dimension" />
+        <attr name="subtitleTextColor" format="color" />
+        <attr name="subtitleBackgroundColor" format="color" />
+        <attr name="subtitleEdgeType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="outline" value="1" />
+            <enum name="dropShadow" value="2" />
+        </attr>
+        <attr name="subtitleEdgeColor" format="color" />
+        <attr name="subtitleEdgeWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>

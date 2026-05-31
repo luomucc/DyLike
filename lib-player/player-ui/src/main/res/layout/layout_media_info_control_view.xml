@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/dp8"
+        android:background="@drawable/bg_control_glass"
+        android:paddingStart="@dimen/dkplayer_default_spacing"
+        android:paddingTop="@dimen/dkplayer_default_spacing"
+        android:paddingEnd="@dimen/dkplayer_default_spacing">
+
+        <ImageView
+            android:id="@+id/action_close"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:padding="@dimen/dp8"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            tools:ignore="UseAppTint,contentDescription" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/player_control_item_height"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/action_media_info"
+            android:textColor="@color/grey_300"
+            android:textSize="@dimen/player_controller_title_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dkplayer_default_spacing"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dkplayer_default_spacing">
+
+                <TextView
+                    android:id="@+id/section_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_file_info"
+                    android:textColor="@color/view_accent_light"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_file_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="middle"
+                    android:maxLines="1"
+                    android:textColor="@color/grey_300"
+                    android:textSize="13sp"
+                    tools:text="video.mkv" />
+
+                <TextView
+                    android:id="@+id/tv_file_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="1.2 GB" />
+
+                <TextView
+                    android:id="@+id/tv_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="24:30" />
+
+                <TextView
+                    android:id="@+id/tv_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="Matroska" />
+
+                <TextView
+                    android:id="@+id/tv_source_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="WebDAV · 播放中" />
+
+                <TextView
+                    android:id="@+id/tv_display_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="全屏 · 60.0Hz" />
+
+                <TextView
+                    android:id="@+id/tv_runtime_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_500"
+                    android:textSize="12sp"
+                    tools:text="Android 14 · Google Pixel 8 · 当前内核" />
+
+                <TextView
+                    android:id="@+id/section_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dkplayer_default_spacing"
+                    android:text="@string/section_video"
+                    android:textColor="@color/view_accent_light"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_video_tracks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:id="@+id/section_audio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dkplayer_default_spacing"
+                    android:text="@string/section_audio"
+                    android:textColor="@color/view_accent_light"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_audio_tracks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:id="@+id/section_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dkplayer_default_spacing"
+                    android:text="@string/section_subtitle"
+                    android:textColor="@color/view_accent_light"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_subtitle_tracks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

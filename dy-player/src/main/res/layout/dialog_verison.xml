@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp16">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:gravity="center"
+        android:text="@string/hint_version_message"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:lineSpacingExtra="1dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/hint_version_null"
+        android:textColor="@color/text_secondary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        tools:text="反正是个公告的文本就是了\n你就说是不是"/>
+
+    <TextView
+        android:id="@+id/text_remark"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp48"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_third"
+        android:textSize="16sp"
+        android:text="@string/hint_version_ganga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_message"
+        tools:text="🐥134" />
+
+    <TextView
+        android:id="@+id/action_confirmed"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginStart="@dimen/dp8"
+        android:layout_marginEnd="@dimen/dp8"
+        android:layout_marginTop="@dimen/dp8"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_confirmed"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/action_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/text_remark" />
+
+    <TextView
+        android:id="@+id/action_cancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp48"
+        android:layout_marginStart="@dimen/dp8"
+        android:layout_marginEnd="@dimen/dp8"
+        android:background="@drawable/bg_radius_24_secondary"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        android:text="@string/action_cancel"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@+id/action_confirmed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/action_confirmed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

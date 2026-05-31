@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground"
+    tools:context=".ui.media.MediaFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:id="@+id/tv_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:padding="@dimen/dp8"
+            android:gravity="center"
+            android:text="选择存储"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner_storage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_storage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_storage"/>
+
+        <Button
+            android:id="@+id/button_scan"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp40"
+            android:minHeight="@dimen/dp40"
+            app:layout_constraintTop_toBottomOf="@+id/tv_storage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="执行扫描"
+            tools:ignore="HardcodedText" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sw_scan_no_media"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/button_scan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sw_scan_hide"
+            android:text="扫描.nomedia"
+            tools:ignore="HardcodedText"/>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sw_scan_hide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8"
+            app:layout_constraintStart_toEndOf="@+id/sw_scan_no_media"
+            app:layout_constraintTop_toBottomOf="@+id/button_scan"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="扫描隐藏目录"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/tv_min_file_size"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:padding="@dimen/dp8"
+            android:gravity="center"
+            android:text="最小文件(KB)"
+            app:layout_constraintTop_toBottomOf="@+id/sw_scan_no_media"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText"/>
+
+        <EditText
+            android:id="@+id/et_min_file_size"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            android:text="10"
+            android:hint="10"
+            app:layout_constraintStart_toEndOf="@+id/tv_min_file_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_min_file_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_min_file_size"
+            tools:ignore="HardcodedText,Autofill,LabelFor"/>
+
+        <TextView
+            android:id="@+id/tv_scan_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_min_file_size"
+            android:text="扫描结果"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/tv_scan_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_scan_info"
+            android:text="总视频文件数：0"
+            tools:ignore="HardcodedText"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/dp8"
+        android:paddingEnd="@dimen/dp8"
+        app:layout_constraintBottom_toTopOf="@+id/layout_batch"
+        app:layout_constraintEnd_toStartOf="@+id/fast_scroller"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_btn" />
+
+    <me.lingci.lib.base.view.FastScroller
+        android:id="@+id/fast_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/layout_batch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_btn"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_batch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp16"
+        android:paddingEnd="@dimen/dp16"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/button_add"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp40"
+            android:minHeight="@dimen/dp40"
+            android:text="加入媒体库(0)"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/button_select_invert"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp40"
+            android:minHeight="@dimen/dp40"
+            android:text="反选新增"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_select_all"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/button_select_all"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/dp40"
+            android:minHeight="@dimen/dp40"
+            android:text="全选新增"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

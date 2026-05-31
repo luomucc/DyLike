@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:titleCentered="true"
+        app:title="@string/hint_help_info"
+        android:layout_marginTop="@dimen/dp4"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/action_roger"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp16"
+        android:layout_marginBottom="@dimen/dp8"
+        android:minWidth="@dimen/dp40"
+        android:text="@string/action_roger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"  />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dp40"
+        android:paddingBottom="@dimen/dp64"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:translationZ="-1dp"
+        android:layout_marginEnd="@dimen/dp8"
+        android:layout_marginStart="@dimen/dp8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_help_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="1.2dp"
+            android:padding="@dimen/dp8"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            tools:text="很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，很长的文本这是，" />
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
