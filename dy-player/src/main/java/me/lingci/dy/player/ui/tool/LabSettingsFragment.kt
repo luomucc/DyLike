@@ -54,6 +54,10 @@ class LabSettingsFragment : BaseFragment() {
         binding.swDebugMode.setOnClickListener {
             spUtil.debugMode = binding.swDebugMode.isChecked
         }
+        binding.swLabLongVideoPortrait.isChecked = spUtil.labLongVideoPortrait
+        binding.swLabLongVideoPortrait.setOnClickListener {
+            spUtil.labLongVideoPortrait = binding.swLabLongVideoPortrait.isChecked
+        }
     }
 
     override fun resetView() {

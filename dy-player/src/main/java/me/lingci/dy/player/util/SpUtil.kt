@@ -172,6 +172,9 @@ open class SpUtil(context: Context) : SpBase(context) {
 
     var labMpvSpecialRender by SPManager.boolean(true)
 
+    // 长视频竖屏播放：开启后长视频默认竖屏，点击旋转按钮可切换横屏全屏
+    var labLongVideoPortrait by SPManager.boolean(false)
+
     private companion object {
         private const val KEY_VIDEO_PLAYER_CORE = "videoPlayerCore"
         // Kept only for migration and old backup restore. New runtime reads videoPlayerCore.

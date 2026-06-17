@@ -2,6 +2,7 @@ package me.lingci.dy.player.ui.long_video
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
@@ -134,10 +135,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
     private lateinit var speedControlView: SpeedControlView
     private lateinit var mediaInfoControlView: MediaInfoControlView
     private val playbackLogCache = PlaybackLogCache()
-    // 只负责调试态起播黑屏诊断，后台恢复策略仍留在 Activity 内统一编排。
-    // 用 nullable var 而非 by lazy：仅当真正进入调试态起播时才构造，onDestroy 的 cancel
-    // 在从未构造时直接跳过，避免非 debug 会话每次退出浪费一次空对象分配。
-    private var blackScreenWatchdog: BlackScreenWatchdog? = null
     private var backgroundRecoveryJob: Job? = null
     private val mediaPlaybackRecorder by lazy { MediaPlaybackRecorder(spUtil) }
     // 轨道能力查询仍依赖当前 videoView，面板交互和字幕 cue 开关交给 controller。
@@ -255,6 +252,10 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 竖屏模式：尽早锁定竖屏，避免 Manifest 的 landscape 启动后旋转闪烁
+        if (spUtil.labLongVideoPortrait) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         binding = ActivityLongVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         logD(intent.type, intent.action, intent.scheme, intent.data)
@@ -425,7 +426,12 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
         // 弹幕默认配置集中在 controller，等长视频控制器就绪后再初始化，避免 lazy 依赖提前访问未初始化字段。
         longDanmakuController.applyInitialSettings()
         videoView.setVideoController(videoController)
-        videoView.startFullScreen()
+        if (spUtil.labLongVideoPortrait) {
+            // 竖屏模式：不进入全屏，保持竖屏播放（PLAYER_NORMAL 状态）
+        } else {
+            // 默认横屏全屏
+            videoView.startFullScreen()
+        }
         // 轨道面板回调只绑一次，后续轨道数据刷新由 updateTrackPanel 驱动。
         longTrackPanelController.bind()
         updateTrackEntryByCapabilities()
@@ -494,7 +500,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
                 }
                 if (playState == VideoView.STATE_ERROR) {
                     logAndCache("LongVideoActivity", "E", "STATE_ERROR pos=$mCurPos")
-                    cancelBlackScreenWatchdog()
                     lifecycleScope.launch(Dispatchers.IO) {
                         val errorLog = buildString {
                             appendLine("=== 播放错误埋点日志 ===")
@@ -550,7 +555,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
                     }
                 }
                 if (playState == VideoView.STATE_PLAYBACK_COMPLETED) {
-                    cancelBlackScreenWatchdog()
                     longDanmakuController.saveCacheInfo(0, true)
                     if (spUtil.autoNext) {
                         onNextPlay()
@@ -559,17 +563,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
                 if (playState == VideoView.STATE_PLAYING) {
                     clearBackgroundRecoveryState()
                     scheduleMediaLastPlayedUpdate(mCurPos)
-                    // playUrl() 可能执行同步网络请求，需在IO线程调用
-                    val position = mCurPos
-                    val name = itemViewModel.getItem(position).name
-                    lifecycleScope.launch(Dispatchers.IO) {
-                        val playUrl = itemViewModel.getItem(position).playUrl()
-                        lifecycleScope.launch(Dispatchers.Main) {
-                            if (position == mCurPos) {
-                                startBlackScreenWatchdog(position, name, playUrl)
-                            }
-                        }
-                    }
                 }
             }
         })
@@ -662,30 +655,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
                 videoView.post { videoScaleControlView.applyCache() }
             }
         }
-    }
-
-    private fun startBlackScreenWatchdog(position: Int, title: String, playUrl: String) {
-        if (!spUtil.debugMode) {
-            return
-        }
-        // 诊断逻辑已抽出；Activity 只控制是否在调试模式启动检测。首次进入调试态时才构造。
-        ensureBlackScreenWatchdog().start(position, title, playUrl)
-    }
-
-    private fun cancelBlackScreenWatchdog() {
-        blackScreenWatchdog?.cancel()
-    }
-
-    private fun ensureBlackScreenWatchdog(): BlackScreenWatchdog {
-        return blackScreenWatchdog ?: BlackScreenWatchdog(
-            context = this,
-            scope = lifecycleScope,
-            videoView = videoView,
-            playbackLogCache = playbackLogCache,
-            currentPosition = { mCurPos },
-            showSubTips = { longVideoControlView.showSubTips(it) },
-            logAndCache = ::logAndCache
-        ).also { blackScreenWatchdog = it }
     }
 
     private fun saveMediaInfo(url: String) {
@@ -869,7 +838,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
 
     override fun onPause() {
         super.onPause()
-        cancelBlackScreenWatchdog()
         rememberPlaybackPosition(videoView.currentPosition)
         danmakuView.pause()
         videoView.pause()
@@ -883,7 +851,6 @@ class LongVideoActivity : BaseActivity(), OnLongVideoListener, OnPlayNextListene
 
     override fun onDestroy() {
         super.onDestroy()
-        cancelBlackScreenWatchdog()
         mediaPlaybackRecorder.release()
         clearBackgroundRecoveryState()
         clearSurfaceTrace()

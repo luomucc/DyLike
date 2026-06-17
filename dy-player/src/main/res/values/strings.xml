@@ -112,6 +112,8 @@
     <string name="hint_lab_surface_z_order_desc">尝试SurfaceView层级提升，排查部分机型无画面问题</string>
     <string name="hint_lab_mpv_special_render">MPV 专用 Render</string>
     <string name="hint_lab_mpv_special_render_desc">专用Render无闪屏，关闭后同步支持Texture</string>
+    <string name="hint_lab_long_video_portrait">长视频竖屏播放</string>
+    <string name="hint_lab_long_video_portrait_desc">开启后长视频默认进入竖屏播放</string>
     <string name="hint_backup_data">备份数据</string>
     <string name="hint_backup_data_desc">备份媒体库、播放器记录等数据</string>
     <string name="hint_restore_data">还原数据</string>
