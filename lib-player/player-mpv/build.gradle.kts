@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "me.lingci.lib.player.mpv"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    buildToolsVersion = "36.1.0"
 
     defaultConfig {
         minSdk = 24
@@ -46,3 +47,4 @@ dependencies {
     api(libs.mpv.android.lib)
 
 }
+

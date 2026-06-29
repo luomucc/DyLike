@@ -21,7 +21,12 @@ import androidx.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import android.os.Handler;
+import android.os.Looper;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import me.lingci.dy.player.R;
 import me.lingci.dy.player.databinding.LayoutShortVideoControlViewBinding;
@@ -77,6 +82,16 @@ public class ShortVideoControlView extends FrameLayout implements IControlCompon
     private long mLastTwoFingerUpTime = 0;
     private static final long DOUBLE_TAP_TIMEOUT = 300;
 
+    private final Handler mTimeHandler = new Handler(Looper.getMainLooper());
+    private final Runnable mTimeUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            updateSystemTime();
+            mTimeHandler.postDelayed(this, 1000);
+        }
+    };
+    private final SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
     public interface OnShortVideoListener {
 
         void onLike(boolean like);
@@ -86,6 +101,8 @@ public class ShortVideoControlView extends FrameLayout implements IControlCompon
         void onMore();
 
         void onMoreAction();
+
+        void onDelete();
 
         void playNext();
 
@@ -142,10 +159,16 @@ public class ShortVideoControlView extends FrameLayout implements IControlCompon
                 mOnShortVideoListener.onMoreAction();
             }
         });
+        mBinding.ivDelete.setOnClickListener(v -> {
+            if (mOnShortVideoListener != null) {
+                mOnShortVideoListener.onDelete();
+            }
+        });
         changeVisibility();
         mBinding.speedNode.setVisibility(GONE);
         mBinding.speedNode.setNodes(SPEED_NODES, 2);
         mBinding.tvProgress.setVisibility(GONE);
+        mTimeHandler.post(mTimeUpdateRunnable);
         mBinding.playSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -499,11 +522,26 @@ public class ShortVideoControlView extends FrameLayout implements IControlCompon
         mBinding.tvPage.setVisibility(PlayerInitializer.Player.INSTANCE.getShortShowPager() ? VISIBLE : GONE);
         mBinding.playSeekbar.setVisibility(PlayerInitializer.Player.INSTANCE.getShortShowSeekbar() ? VISIBLE : GONE);
         mBinding.ivMore.setVisibility(PlayerInitializer.Player.INSTANCE.getShortShowMore() ? VISIBLE : GONE);
+        mBinding.ivDelete.setVisibility(PlayerInitializer.Player.INSTANCE.getShortShowMore() ? VISIBLE : GONE);
     }
 
     @SuppressLint("SetTextI18n")
     public void setPage(int current, int total) {
         mBinding.tvPage.setText((current + 1) + " / " + total);
+    }
+
+    public void setVideoDuration(long durationMs) {
+        if (durationMs > 0) {
+            mBinding.tvVideoDuration.setText(PlayerUtils.stringForTime((int) durationMs));
+        } else {
+            mBinding.tvVideoDuration.setText("");
+        }
+    }
+
+    private void updateSystemTime() {
+        if (mBinding.tvSystemTime != null) {
+            mBinding.tvSystemTime.setText(mTimeFormat.format(new Date()));
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -542,6 +580,11 @@ public class ShortVideoControlView extends FrameLayout implements IControlCompon
                     mBinding.ivFull.setVisibility(VISIBLE);
                 } else {
                     mBinding.ivFull.setVisibility(GONE);
+                }
+                // 更新视频长度显示
+                long duration = mControlWrapper.getDuration();
+                if (duration > 0) {
+                    setVideoDuration(duration);
                 }
                 break;
             case VideoView.STATE_PAUSED:

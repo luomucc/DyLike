@@ -53,6 +53,15 @@ data class VideoData(
     @ColumnInfo(name = "parent_path")
     var parentPath: String = "",
 
+    @ColumnInfo(name = "play_count")
+    var playCount: Int = 0,
+
+    @ColumnInfo(name = "play_duration")
+    var playDuration: Long = 0L,
+
+    @ColumnInfo(name = "like_time")
+    var likeTime: Long = 0L,
+
     ) : Parcelable {
 
     companion object {

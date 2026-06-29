@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "me.lingci.lib.dm.view"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    buildToolsVersion = "36.1.0"
 
     defaultConfig {
         minSdk = 24
@@ -45,3 +46,4 @@ dependencies {
     // 弹幕
     api(libs.danmaku.fix)
 }
+

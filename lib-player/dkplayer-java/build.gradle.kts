@@ -7,6 +7,7 @@ plugins {
 android {
     namespace = "xyz.doikki.android.dkplayer"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    buildToolsVersion = "36.1.0"
 
     defaultConfig {
         minSdk = 24
@@ -49,3 +50,4 @@ dependencies {
     api(project(":lib-base"))
     api(libs.androidx.annotation)
 }
+

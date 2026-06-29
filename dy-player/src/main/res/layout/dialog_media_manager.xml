@@ -72,6 +72,22 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/action_select_remote_dir"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp48"
+            android:layout_marginTop="@dimen/dp8"
+            android:background="@drawable/bg_radius_24_secondary"
+            android:gravity="center"
+            android:paddingStart="@dimen/dp16"
+            android:paddingEnd="@dimen/dp16"
+            android:text="选择远程文件夹"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/action_select_dir"/>
+
+        <TextView
             android:id="@+id/action_select_cover"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp48"

@@ -52,6 +52,7 @@ import me.lingci.dy.player.ui.media_scan.MediaScanActivity
 import me.lingci.dy.player.ui.playlist.PlaylistActivity
 import me.lingci.dy.player.ui.playlist.PlaylistSelectDialog
 import me.lingci.dy.player.ui.short_video.ShortVideoActivity
+import me.lingci.dy.player.ui.file_browser.FileBrowserActivity
 import me.lingci.dy.player.ui.source.ItemAction
 import me.lingci.dy.player.ui.source.ItemActionDialog
 import me.lingci.dy.player.util.LibraryCompat
@@ -122,6 +123,8 @@ class MediaFragment : BaseTransitionFragment(), MenuProvider {
         lastCoverRatio = currentRatio
         // 强制从 SharedPreferences 刷新数据，确保与 MediaFullActivity 的修改同步
         refreshDataFromSp()
+        // 刷新远程资源库快捷入口
+        refreshRemoteSourceCards()
     }
 
     private fun init() {
@@ -622,6 +625,8 @@ class MediaFragment : BaseTransitionFragment(), MenuProvider {
             binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), if (isOrientationPortraitOfSysMetrics()) 3 else 7)
             binding.recyclerView.adapter = mediaItemAdapter
         }
+        // 初始化远程资源库快捷入口
+        refreshRemoteSourceCards()
     }
 
     private fun onMediaItemClick(item: MediaData, position: Int, storageId: String) {
@@ -972,6 +977,100 @@ class MediaFragment : BaseTransitionFragment(), MenuProvider {
                 file.listFiles { it.name.endsWith(".jpg") }?.forEach { it.delete() }
             }
         }
+    }
+
+    /**
+     * 刷新远程资源库快捷入口卡片
+     */
+    private fun refreshRemoteSourceCards() {
+        if (!isAdded || _binding == null) return
+        val layoutAction = binding.layoutAction
+        // 移除之前添加的远程资源库卡片
+        var i = 0
+        while (i < layoutAction.childCount) {
+            val child = layoutAction.getChildAt(i)
+            if (child.tag == "remote_source_card") {
+                layoutAction.removeViewAt(i)
+            } else {
+                i++
+            }
+        }
+
+        // 加载远程资源库（WebDav 和 SMB）
+        val sourceList = LibraryCompat.loadSources(spUtil)
+        val remoteSources = sourceList.filter { it.isCustomType() }
+
+        // 为每个远程资源库添加快捷入口卡片
+        for (source in remoteSources) {
+            val cardView = createRemoteSourceCard(source)
+            layoutAction.addView(cardView)
+        }
+    }
+
+    /**
+     * 创建远程资源库快捷入口卡片
+     */
+    private fun createRemoteSourceCard(source: SourceData): android.view.View {
+        // 创建 CardView
+        val cardView = androidx.cardview.widget.CardView(requireContext())
+        val layoutParams = android.view.ViewGroup.MarginLayoutParams(
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp128),
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp72)
+        )
+        layoutParams.setMargins(
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8), 0,
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8),
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8)
+        )
+        cardView.layoutParams = layoutParams
+        cardView.radius = resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8).toFloat()
+        cardView.tag = "remote_source_card"
+        cardView.setCardBackgroundColor(requireContext().getColor(me.lingci.lib.base.R.color.blue_500))
+
+        // 创建 LinearLayout 包含图标和文字
+        val linearLayout = android.widget.LinearLayout(requireContext())
+        linearLayout.orientation = android.widget.LinearLayout.VERTICAL
+        linearLayout.gravity = android.view.Gravity.CENTER
+
+        // 图标
+        val imageView = android.widget.ImageView(requireContext())
+        val imageParams = android.widget.LinearLayout.LayoutParams(
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp32),
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp32)
+        )
+        imageParams.setMargins(0, 0, 0, resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp4))
+        imageView.layoutParams = imageParams
+        imageView.setImageResource(R.drawable.ic_cloud_storage)
+        imageView.setColorFilter(android.graphics.Color.WHITE)
+
+        // 文字
+        val textView = android.widget.TextView(requireContext())
+        val textParams = android.widget.LinearLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        textParams.setMargins(
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8), 0,
+            resources.getDimensionPixelSize(me.lingci.lib.base.R.dimen.dp8), 0
+        )
+        textView.layoutParams = textParams
+        textView.text = source.title
+        textView.setTextColor(android.graphics.Color.WHITE)
+        textView.textSize = 11f
+        textView.maxLines = 1
+        textView.ellipsize = android.text.TextUtils.TruncateAt.END
+        textView.gravity = android.view.Gravity.CENTER
+
+        linearLayout.addView(imageView)
+        linearLayout.addView(textView)
+        cardView.addView(linearLayout)
+
+        // 点击事件：跳转到文件浏览器
+        cardView.setOnClickListener {
+            FileBrowserActivity.start(requireContext(), source)
+        }
+
+        return cardView
     }
 
 }

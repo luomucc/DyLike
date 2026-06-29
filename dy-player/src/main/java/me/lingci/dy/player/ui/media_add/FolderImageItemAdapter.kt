@@ -111,6 +111,27 @@ class FolderImageItemAdapter(
         notifyDataSetChanged()
     }
 
+    /**
+     * 设置远程文件夹数据（支持返回上级）
+     */
+    @SuppressLint("NotifyDataSetChanged")
+    fun setRemoteData(list: List<FileEntity>, parent: FileEntity?) {
+        mList.clear()
+        mList.addAll(list)
+        if (parent != null) {
+            mList.add(
+                0, FileEntity(
+                    title = "返回上级",
+                    name = parent.name,
+                    path = parent.path,
+                    isFile = false,
+                    returnParent = true
+                )
+            )
+        }
+        notifyDataSetChanged()
+    }
+
     fun getItem(position: Int): FileEntity {
         return mList[position]
     }

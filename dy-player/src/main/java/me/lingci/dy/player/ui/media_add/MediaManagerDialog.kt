@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -18,6 +22,7 @@ import me.lingci.dy.player.databinding.DialogMediaManagerBinding
 import me.lingci.dy.player.entity.CoverType
 import me.lingci.dy.player.entity.MediaData
 import me.lingci.dy.player.entity.MediaLibType
+import me.lingci.dy.player.entity.SourceData
 import me.lingci.dy.player.util.LibraryCompat
 import me.lingci.dy.player.util.loadImage
 import me.lingci.lib.base.storage.entity.FileEntity
@@ -50,6 +55,8 @@ open class MediaManagerDialog(
     private var currentVideoInfo: MediaData? = null
     private var coverModel = 0
     private var updateModel = false
+    private var remoteSourceData: SourceData? = null
+    private var isRemoteMode = false
 
     companion object {
         const val KEY_SOURCE = "version"
@@ -163,6 +170,14 @@ open class MediaManagerDialog(
                 changeCover()
                 binding.actionSelectDir.visibility = View.GONE
                 binding.actionReselect.visibility = View.VISIBLE
+                // 远程媒体库回显
+                if (mediaBean.type == MediaLibType.WEBDAV || mediaBean.type == MediaLibType.SMB) {
+                    isRemoteMode = true
+                    val spUtil = me.lingci.dy.player.util.SpUtil(requireContext())
+                    val sourceList = LibraryCompat.loadSources(spUtil)
+                    remoteSourceData = sourceList.find { it.id == mediaBean.storageId }
+                    binding.actionSelectRemoteDir.visibility = View.GONE
+                }
                 binding.textSelectDir.text = mediaBean.path.replace(rootPath, "")
                 binding.textName.setText(mediaBean.title)
                 binding.textName.isEnabled = true
@@ -247,6 +262,10 @@ open class MediaManagerDialog(
             showSelectView()
             changeFolderItem(FileEntity(name = "root", path = rootPath))
         }
+        // 选择远程文件夹
+        binding.actionSelectRemoteDir.setOnClickListener {
+            showRemoteSourceSelectDialog()
+        }
         // 选择封面
         binding.actionSelectCover.setOnClickListener {
             hideContentView()
@@ -266,6 +285,27 @@ open class MediaManagerDialog(
         binding.actionSelect.setOnClickListener {
             Log.d(this, mFolderImageItemAdapter.findOne())
             mFolderImageItemAdapter.findOne()?.let { fileBean ->
+                if (isRemoteMode && remoteSourceData != null) {
+                    // 远程模式：直接确认选择
+                    currentMediaFile = fileBean
+                    binding.actionSelect.isEnabled = false
+                    binding.actionSelect.visibility = View.GONE
+                    binding.actionReselect.visibility = View.VISIBLE
+                    binding.textName.setText(fileBean.name)
+                    binding.textName.isEnabled = true
+                    viewModel.setText(fileBean.name)
+                    if (coverModel == 0) {
+                        changeCover()
+                    }
+                    if (coverModel == 1) {
+                        hideContentView()
+                        binding.actionSelectCover.visibility = View.VISIBLE
+                    }
+                    if (coverModel == 2) {
+                        viewModel.searchMedia(fileBean.name)
+                    }
+                    return@setOnClickListener
+                }
                 File(fileBean.path).let { file ->
                     Log.d(this@MediaManagerDialog, file)
                     if (file.mediaChildSize() == 0) {
@@ -319,14 +359,25 @@ open class MediaManagerDialog(
                 CoverType.CUSTOM -> if (currentCoverFile == null) "" else currentCoverFile!!.path
                 CoverType.AUTO -> ""     // 自动匹配，清空 showFile（由系统自动获取）
             }
-            mediaData.type = MediaLibType.LOCAL
-            mediaData.storageType = StorageType.LOCAL_STORAGE
+            if (isRemoteMode && remoteSourceData != null) {
+                mediaData.type = MediaLibType.fromStorage(remoteSourceData!!.type!!)
+                mediaData.storageType = remoteSourceData!!.type!!
+                mediaData.storageId = remoteSourceData!!.id
+            } else {
+                mediaData.type = MediaLibType.LOCAL
+                mediaData.storageType = StorageType.LOCAL_STORAGE
+            }
             mediaData.playMode = getPlayModel()
             sourceBean?.let {
                 mediaData.id = it.id
             }
             if (mediaData.id.isBlank()) {
-                mediaData.id = LibraryCompat.mediaId(mediaData)
+                val sourceList = if (isRemoteMode && remoteSourceData != null) {
+                    LibraryCompat.loadSources(me.lingci.dy.player.util.SpUtil(requireContext()))
+                } else {
+                    emptyList()
+                }
+                mediaData.id = LibraryCompat.mediaId(mediaData, sourceList)
             }
             onSave(mediaData, updateModel)
             dismiss()
@@ -361,8 +412,105 @@ open class MediaManagerDialog(
         }
     }
 
+    /**
+     * 显示远程资源库选择对话框
+     */
+    private fun showRemoteSourceSelectDialog() {
+        val spUtil = me.lingci.dy.player.util.SpUtil(requireContext())
+        val sourceList = LibraryCompat.loadSources(spUtil).filter { it.isCustomType() }
+        if (sourceList.isEmpty()) {
+            ToastUtil.showToast(requireContext(), "请先配置远程资源库")
+            return
+        }
+        val titles = sourceList.map { it.title }.toTypedArray()
+        androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setTitle("选择远程资源库")
+            .setItems(titles) { _, which ->
+                val selected = sourceList[which]
+                selectRemoteSource(selected)
+            }
+            .setNegativeButton("取消", null)
+            .show()
+    }
+
+    /**
+     * 选择远程资源库并加载根目录文件夹
+     */
+    private fun selectRemoteSource(source: SourceData) {
+        remoteSourceData = source
+        isRemoteMode = true
+        currentMediaFile = null
+        showLoading()
+        lifecycleScope.launch(Dispatchers.IO) {
+            val storage = source.toStorage()
+            if (storage == null) {
+                withContext(Dispatchers.Main) {
+                    hideLoading()
+                    ToastUtil.showToast(requireContext(), "资源库不受支持")
+                }
+                return@launch
+            }
+            val testConnect = storage.testConnect()
+            if (!testConnect) {
+                withContext(Dispatchers.Main) {
+                    hideLoading()
+                    ToastUtil.showToast(requireContext(), "资源库连接失败")
+                }
+                return@launch
+            }
+            val rootFile = storage.rootFile()
+            val folderList = mutableListOf<FileEntity>()
+            storage.listFile("/", false).collect { file ->
+                if (!file.isFile) {
+                    folderList.add(file)
+                }
+            }
+            withContext(Dispatchers.Main) {
+                hideLoading()
+                showSelectView()
+                setSelectFolderAdapter()
+                mFolderImageItemAdapter.setRemoteData(folderList, null)
+                binding.textSelectDir.text = "${source.title} (${folderList.size}个文件夹)"
+            }
+        }
+    }
+
+    /**
+     * 加载远程资源库指定路径下的文件夹
+     */
+    private fun loadRemoteFolderList(source: SourceData, fileEntity: FileEntity) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val storage = source.toStorage() ?: return@launch
+            val path = fileEntity.path
+            val folderList = mutableListOf<FileEntity>()
+            storage.listFile(path, false).collect { file ->
+                if (!file.isFile) {
+                    folderList.add(file)
+                }
+            }
+            withContext(Dispatchers.Main) {
+                val parent = if (path != "/" && path.isNotBlank()) {
+                    val parentPath = path.substringBeforeLast("/", "/")
+                    FileEntity(name = parentPath, path = parentPath, isFile = false)
+                } else null
+                mFolderImageItemAdapter.setRemoteData(folderList, parent)
+                binding.textSelectDir.text = "${fileEntity.name} (${folderList.size}个文件夹)"
+            }
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun changeFolderItem(fileEntity: FileEntity) {
+        if (isRemoteMode && remoteSourceData != null) {
+            if (fileEntity.returnParent) {
+                val parentPath = fileEntity.path.substringBeforeLast("/", "/")
+                val parent = FileEntity(name = parentPath, path = parentPath, isFile = false)
+                loadRemoteFolderList(remoteSourceData!!, parent)
+            } else {
+                loadRemoteFolderList(remoteSourceData!!, fileEntity)
+            }
+            return
+        }
         fileEntity.path.let { path ->
             var file = File(path)
             if (fileEntity.returnParent) {
@@ -406,6 +554,8 @@ open class MediaManagerDialog(
         viewModel.setText("")
         currentMediaFile = null
         currentVideoInfo = null
+        remoteSourceData = null
+        isRemoteMode = false
         binding.radioDefault.isSelected = true
         mFolderImageItemAdapter.setData(emptyList())
         setSelectFolderAdapter()
@@ -462,5 +612,27 @@ open class MediaManagerDialog(
     private fun isSetCover(): Boolean {
         return currentCoverFile != null
     }
+
+    /**
+     * 显示加载对话框
+     */
+    private fun showLoading() {
+        val loadingDialog = me.lingci.lib.base.dailog.LoadingDialog(requireActivity())
+        loadingDialog.show()
+        this.loadingDialog = loadingDialog
+    }
+
+    /**
+     * 隐藏加载对话框
+     */
+    private fun hideLoading() {
+        try {
+            loadingDialog?.dismiss()
+        } catch (_: Exception) {
+        }
+        loadingDialog = null
+    }
+
+    private var loadingDialog: me.lingci.lib.base.dailog.LoadingDialog? = null
 
 }

@@ -15,6 +15,7 @@ val buglyAppId = project.localBuildConfigString("BUGLY_APP_ID")
 android {
     namespace = "me.lingci.dy.player"
     compileSdk = libs.versions.compileSdk.get().toInt()
+    buildToolsVersion = "36.1.0"
 
     flavorDimensions.add("mode")
 

@@ -30,6 +30,7 @@ import me.lingci.dy.player.util.MediaManger
 import me.lingci.dy.player.util.PlaybackErrorLogger
 import me.lingci.dy.player.util.PlaybackLogCache
 import me.lingci.dy.player.util.PlaybackTraceHelper
+import me.lingci.dy.player.util.RecommendSorter
 import me.lingci.dy.player.util.SpUtil
 import me.lingci.dy.player.util.ShortTitleFormatter
 import me.lingci.dy.player.util.VideoListTempStore
@@ -307,7 +308,8 @@ class ShortVideoActivity : BaseActivity() {
         var currentIndex = index
         if ((customRandom && random) || (!customRandom && spUtil.shortRandom)) {
             val data = list.removeAt(index)
-            mVideoList.addAll(list.shuffled())
+            // 使用喜好度推荐排序替代简单随机打乱
+            mVideoList.addAll(RecommendSorter.smartShuffle(list))
             mVideoList.add(0, data)
             currentIndex = 0
         } else {
@@ -496,6 +498,8 @@ class ShortVideoActivity : BaseActivity() {
                     list.removeAt(index)
                 }
                 if (like) {
+                    // 记录点赞时间
+                    videoData.likeTime = System.currentTimeMillis()
                     list.add(videoData)
                 }
                 spUtil.likeJson = JsonUtil.toJsonString(list)
@@ -532,6 +536,10 @@ class ShortVideoActivity : BaseActivity() {
                     })
                     shortMoreDialog.show(supportFragmentManager, shortMoreDialog.tag)
                 }
+            }
+
+            override fun onDelete() {
+                shortVideoFileActions.showDeleteConfirmDialog()
             }
 
             override fun playNext() {
