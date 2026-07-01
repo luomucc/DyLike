@@ -641,6 +641,10 @@ class WebDavStorage(
 
     // 获取WebDAV URL
     private fun getWebDavUrl(relativePath: String): String {
+        // 如果已经是完整 URL，直接返回（解决从外部传入 videoUrl 完整路径时的重复拼接问题）
+        if (relativePath.startsWith("http://") || relativePath.startsWith("https://")) {
+            return relativePath
+        }
         return if (relativePath.isEmpty() || relativePath == "/") {
             rootUrl
         } else {
